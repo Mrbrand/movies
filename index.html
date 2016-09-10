@@ -9,7 +9,7 @@
 		<meta content="yes" name="apple-mobile-web-app-capable" />
 		<meta content="text/html; charset=iso-8859-1" http-equiv="Content-Type" />
 		<link rel="apple-touch-icon" href="img/icon.png"/>
-        <link rel="icon" type="image/png" href="http://betarabbit.com/mangajo/img/bread-16.ico">
+        <link rel="icon" type="image/png" href="img/film.png">
 		
 		<link rel="stylesheet" type="text/css" href="style.css"/>
 		
@@ -44,13 +44,14 @@
                 	<option value="grade">Sort by</option>
                 	<option value="title">Title</option>
                 	<option value="grade">Grade</option>
+                	<option value="watched">Date</option>
             	</select>
             	
                 <! New button>
-				<button id="quick_add" style="float:right;margin-left:10px;">Add</button>
+				<button id="new-button" style="float:right;margin-left:10px;">New</button>
     			
                 <!--Search input-->
-                <input id="quick_search" onkeyup="refresh_groceries();" placeholder="Search/quick add" style="float:right;width:100px;border-radius:3px;"/>
+                <input id="quick_search" onkeyup="refresh_list();" placeholder="Search/quick add" style="float:right;width:100px;border-radius:3px;"/>
 				
                
 			</div><!-- end controls-->
@@ -67,7 +68,52 @@
             
 		</div><!-- end page-->
 		
-        
+     <!-- NEW ---------------------------------------------------------------------->
+		<div id="new" class="page"  style="display:none;">
+			
+			<div class="header">
+				<div class="menu-title">New...</div>
+			</div> <!--end header-->
+			
+			<!--Submeny-->
+			<div class="menu">
+				<button class="cancel-button">Cancel</button>
+				<button class="add-button" style="width:70px; float:right;margin-left:5px;"><img src="img/save.png" /></button>
+				<br/><br/>
+			</div><!-- end menu--> 
+            
+            <! FORM >
+			<form id="new-item-form">
+				<input name="title" type="text" style="margin-bottom:5px;height:50px; font-size:1.3em" placeholder="Title"/><br/>
+                <input  name="category" type="text" style="margin-bottom:5px;height:50px; font-size:1.3em" placeholder="Genre"/><br/>
+			    <input  name="grade" type="text" style="margin-bottom:5px;height:50px; font-size:1.3em" placeholder="Rating"/><br/>
+			    <input  name="watched" type="date" style="margin-bottom:5px;height:50px; font-size:1.3em"/><br/>
+			     <textarea name="notes" rows="4" placeholder="Ingredienser"></textarea>
+			   
+            
+    			<center>
+    				<button class="more-button" type='button'>More options</button>
+    			</center>
+    			
+                <div class="more" style="display:none;">
+    				<span class="field-description">id:</span>
+    				<input class="item-id" name="id" type="text" style="color:#CCC;"/> <br/>
+        	        <span class="field-description">Status:</span>
+                    <input class="status" type="text" name="status" />
+                    <span class="field-description">Start Date:</span>
+                    <input class="start_date" type="text" name="start_date" />
+                    <span class="field-description">Finish Date:</span>
+                    <input class="finish_date_input" type="text" name="finish_date" />
+                    <span class="field-description">Type:</span>
+                    <input class="type_input" type="text" name="type" />
+                    
+                     <span class="field-description">History:</span>
+                    <div id="history_items"></div>
+                    
+                </div>
+            
+			</form>
+		</div><!--new-item-->   
 
 		<!-- EDIT ---------------------------------------------------------------------->
 		<div id="edit" class="page"  style="display:none;">
@@ -86,7 +132,10 @@
             
 			<form id="edit-groceries-form">
 				<input name="title" type="text" style="margin-bottom:5px;height:50px; font-size:1.3em"/><br/>
-                <input  name="grade" type="text" style="margin-bottom:5px;height:50px; font-size:1.3em" placeholder="Grade"/><br/>
+				<input  name="category" type="text" style="margin-bottom:5px;height:50px; font-size:1.3em" placeholder="Genre"/><br/>
+                <input  name="grade" type="text" style="margin-bottom:5px;height:50px; font-size:1.3em" placeholder="Rating"/><br/>
+                <input  name="watched" type="date" style="margin-bottom:5px;height:50px; font-size:1.3em"/><br/>
+			    
 			    <textarea name="notes" rows="4" placeholder="Notes"></textarea>
             
     			<center>
